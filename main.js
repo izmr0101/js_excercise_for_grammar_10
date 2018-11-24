@@ -20,13 +20,14 @@ const numbers = [10, 500, 234, 965, 221];
 // 最終的にArray.prototype.splice を使って、最大値をもつインデックス番号を指定して、配列から削除すれば実現できます。
 
 function removeMaxNumberFromArray(_numbers) {
-    let maxNum = _numbers[0];
-    _numbers.forEach(function (num) {
-        if (num > maxNum) {
+    let maxNum;
+    let indexOfMaxNum;
+    _numbers.forEach(function (num, index) {
+        if (maxNum === undefined || num > maxNum) {
             maxNum = num;
+            indexOfMaxNum = index;
         }
     });
-    const indexOfMaxNum = _numbers.indexOf(maxNum);
     const returnedNumbers = _numbers.slice();
     returnedNumbers.splice(indexOfMaxNum, 1);
     return returnedNumbers;
