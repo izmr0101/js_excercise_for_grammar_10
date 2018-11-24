@@ -21,7 +21,7 @@ const numbers = [10, 500, 234, 965, 221];
 
 function removeMaxNumberFromArray(_numbers) {
     let maxNum = _numbers[0];
-    _numbers.forEach(function(num){
+    _numbers.forEach(function (num) {
         if (num > maxNum) {
             maxNum = num;
         }
@@ -65,8 +65,8 @@ function sortNumbers(_numbers) {
         }
         if (a > b) {
             return 1;  // a が b より大きければ、a　は　b の前に並ぶ
-        } 
-            return 0; // a と b が同じならば、a と b の並び順は変わらない
+        }
+        return 0; // a と b が同じならば、a と b の並び順は変わらない
     });
     return afterSortNumbers;
 }
