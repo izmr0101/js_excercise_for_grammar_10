@@ -14,6 +14,44 @@
  *     - removeMaxNumberFromArray関数を実行した後の配列numbersの内容は [10, 500, 234, 965, 221] のままである
  */
 
+ const numbers = [10, 500, 234, 965, 221];
+/* 
+ function removeMaxNumberFromArray(_numbers) {
+    const returnedNumbers = [];
+    let maxNum = _numbers[0];
+    for (let i = 1; i <_numbers.length; i++){ 
+        if (_numbers[i] < maxNum) {
+                returnedNumbers.push(_numbers[i]);
+            } else {
+                returnedNumbers.push(maxNum);
+                maxNum = _numbers[i];
+            }
+    };
+    return returnedNumbers;
+ }
+
+console.log('numbersの内容は[10, 500, 234, 965, 221]であるべき:', numbers );
+
+console.log('returnedNumbersの内容は[10, 500, 234, 221]であるべき：', removeMaxNumberFromArray(numbers));
+
+配列の順番が変わったので失敗
+
+ */
+
+function removeMaxNumberFromArray(_numbers) {
+    const maxNum = Math.max.apply(null, _numbers); // Math.maxは配列を第1引数として渡せないので、applyを使うらしい
+    const returnedNumbers = [];
+    _numbers.forEach(function(num){
+        if (num !== maxNum) {
+            returnedNumbers.push(num);
+        }
+    });
+    return returnedNumbers;
+}
+
+console.log('numbersの内容は[10, 500, 234, 965, 221]であるべき:', numbers );
+
+console.log('returnedNumbersの内容は[10, 500, 234, 221]であるべき：', removeMaxNumberFromArray(numbers));
 
 
 /**
