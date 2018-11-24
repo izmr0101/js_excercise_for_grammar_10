@@ -14,7 +14,7 @@
  *     - removeMaxNumberFromArray関数を実行した後の配列numbersの内容は [10, 500, 234, 965, 221] のままである
  */
 
- const numbers = [10, 500, 234, 965, 221];
+const numbers = [10, 500, 234, 965, 221];
 /* 
  function removeMaxNumberFromArray(_numbers) {
     const returnedNumbers = [];
@@ -41,7 +41,7 @@ console.log('returnedNumbersの内容は[10, 500, 234, 221]であるべき：', 
 function removeMaxNumberFromArray(_numbers) {
     const maxNum = Math.max.apply(null, _numbers); // Math.maxは配列を第1引数として渡せないので、applyを使うらしい
     const returnedNumbers = [];
-    _numbers.forEach(function(num){
+    _numbers.forEach(function (num) {
         if (num !== maxNum) {
             returnedNumbers.push(num);
         }
@@ -49,7 +49,7 @@ function removeMaxNumberFromArray(_numbers) {
     return returnedNumbers;
 }
 
-console.log('numbersの内容は[10, 500, 234, 965, 221]であるべき:', numbers );
+console.log('numbersの内容は[10, 500, 234, 965, 221]であるべき:', numbers);
 
 console.log('returnedNumbersの内容は[10, 500, 234, 221]であるべき：', removeMaxNumberFromArray(numbers));
 
@@ -69,6 +69,26 @@ console.log('returnedNumbersの内容は[10, 500, 234, 221]であるべき：', 
  *     - sortNumbers関数の戻り値は[10, 102, 221, 234, 500, 965, 1000]である
  *     - sortNumbers関数を実行した後のbeforeSortNumbersの内容は [1000, 10, 500, 234, 965, 221, 102] のままである
  *   - その他
- *     - 「Array.prototype.sort()」を使う
+ *     - 「Array.prototype.sort()」を使う *ソートされた配列は元の配列を並び替えるため注意
+ *                                      *ソート基準を示さない場合、文字列比較で並び替えられる
  *       - https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
  */
+
+const beforeSortNumbers = [1000, 10, 500, 234, 965, 221, 102];
+
+function sortNumbers(_numbers) {
+    const arrayForSort = _numbers.slice();
+    const afterSortNumbers = arrayForSort.sort(function (a, b) {
+        if (a < b) {
+            return -1; // a が b より小さければ、a　は　b　の後ろに並ぶ
+        } else if (a > b) {
+            return 1;  // a が b より大きければ、a　は　b の前に並ぶ
+        } else {
+            return 0; // a と b が同じならば、a と b の並び順は変わらない
+        }
+    });
+    return afterSortNumbers;
+}
+
+console.log('beforeSortNumbersの内容は[1000, 10, 500, 234, 965, 221, 102]であるべき：', beforeSortNumbers);
+console.log('afterSortNumbersの内容は[10, 102, 221, 234, 500, 965, 1000]であるべき：' , sortNumbers(beforeSortNumbers));
